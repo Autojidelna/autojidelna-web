@@ -26,45 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     let downloadUrl = '';
                     let downloadFileName = '';
                     for(var i = 0; i < data.assets.length; i++) {
-                    console.log(data.assets[i].name);
                     if(!data.assets[i].name.includes('arm64') && !data.assets[i].name.includes('x86_64') && !data.assets[i].name.includes('armeabi') && data.assets[i].name.includes('.apk')) {
                         downloadUrl = data.assets[i].browser_download_url;
                         downloadFileName = data.assets[i].name;
                     }
                     }
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('GET', downloadUrl);
-                    xhr.responseType = 'blob';
-                    xhr.onloadstart = () => {
-                    // create progress bar element
-                    const progressBar = document.createElement('progress');
-                    progressBar.max = 100;
-                    progressBar.value = 0;
-                    document.body.appendChild(progressBar);
-                    };
-                    xhr.onprogress = (event) => {
-                    // update progress bar value
-                    const progressBar = document.querySelector('progress');
-                    progressBar.value = (event.loaded / event.total) * 100;
-                    };
-                    xhr.onload = () => {
-                    // create download link element
-                    const url = URL.createObjectURL(xhr.response);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = downloadFileName;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    // remove progress bar element
-                    const progressBar = document.querySelector('progress');
-                    document.body.removeChild(progressBar);
-                    };
-                    xhr.onerror = (error) => {
-                    console.error(error);
-                    };
-                    xhr.send();
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = downloadUrl;
+                    downloadLink.download = downloadFileName;
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
                 })
                 .catch(error => {
                     console.error(error);
