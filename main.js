@@ -37,6 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.body.appendChild(downloadLink);
                     downloadLink.click();
                     document.body.removeChild(downloadLink);
+
+                    const downloadButton = document.createElement('button');
+                    downloadButton.innerText = 'Pokud se aplikace nestáhne sama klikněte zde';
+                      downloadButton.style.backgroundColor = '#4CAF50';
+                    downloadButton.style.border = 'none';
+                    downloadButton.style.color = 'white';
+                    downloadButton.style.padding = '15px 32px';
+                    downloadButton.style.textAlign = 'center';
+                    downloadButton.style.textDecoration = 'none';
+                    downloadButton.style.fontSize = '16px';
+                    downloadButton.style.cursor = 'pointer';
+                    downloadButton.style.position = 'absolute';
+                    downloadButton.style.bottom = '20%';
+                    downloadButton.style.left = '50%';
+                    downloadButton.style.transform = 'translateX(-50%)';
+                    downloadButton.addEventListener('click', () => {
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = downloadUrl;
+                        downloadLink.download = downloadFileName;
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                    });
+                    document.body.appendChild(downloadButton);
                 })
                 .catch(error => {
                     console.error(error);
