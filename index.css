@@ -1,11 +1,61 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@font-face {
+  font-family: "Gantari";
+  src: url("gantari-regular.ttf") format("truetype");
+}
 * {
   font-family: 'Open Sans', 'sans-serif';
 }
 
 html, body {
   overflow: hidden;
+}
+
+a.github-link {
+  background-color: hsl(0, 10%, 10%);
+}
+a:hover {
+  border-radius: 0.3em;
+}
+a {
+  position:absolute;
+  top: 33%;
+  /*center in the middle horizontally*/
+  left: 50%;
+  /*center in the middle vertically*/
+  transform: translate(-50%, -50%);
+  display: flex;
+  margin: 0.3em;
+  padding: 0.15em 0.6em;
+  box-sizing: border-box;
+  width: 15em;
+  height: 4em;
+  align-self: center;
+  border-radius: 0.75em;
+  background-color: hsl(215, 75%, 50%);;
+  text-decoration: none;
+  color: hsl(215, 100%, 95%);
+  transition: border-radius 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 11em;
+}
+a > img{
+  height: 1.6em;
+  width: 1.6em;
+  padding: 0.2em;
+  filter: invert(97%) sepia(96%) saturate(2553%) hue-rotate(178deg) brightness(105%) contrast(108%);
+  /*center vertically*/
+  align-self: center;
+
+}
+a > span {
+  display: block;
+  margin: auto auto;
+  font-family: Gantari;
+  text-decoration: none;
 }
 
 h1 {
